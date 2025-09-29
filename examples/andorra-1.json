@@ -1,0 +1,27 @@
+    {
+        "id": "did:andorra:NRTAD-059888N_ISS",
+        "verificationMethod": [
+            {
+                "id": "did:andorra:NRTAD-059888N_ISS#keys-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:andorra:NRTAD-059888N_ISS",
+                "publicKeyJwk": {
+                    "kty": "RSA",
+                    "n": "tnFN6TuNoPFXUl6bQQutJAR1FHDa6mAudbcy4cTTpCF3SVP4tCDNpGIbMJQIrgbjWy7l1djIWKIx8jQVK-mL3vgrZ7c6kfFPJjWO26lu5lXDwu8mWq8wjIlNzJA2iOdUdGXYdrhLW8xFxMLJDNy2cyMzIpH4199BSxpdhEqrnin1RavzLjGV97LFMs-NR-KEjfBup70SM4-XkKBgxoWnc1EcAFUrzMOTydvXMeX_QrLzyweXLjCxuc4gLeEsY-wdqD25NWq0GLuiOyGh1nv6cyYq3XnqruA3_UnhsvKtVnqiOo1ybauK-c_BBoT0qvfDGg-7NiYfr1ZhhU1ADwxZew",
+                    "e": "AQAB",
+                    "use": "sig"
+                }
+            }
+        ],
+        "assertionMethod": [
+            "did:andorra:NRTAD-059888N_ISS#keys-1"
+        ],
+        "service": [
+            {
+                "id": "did:andorra:NRTAD-059888N_ISS#service-1",
+                "type": "DIDResolutionService",
+                "serviceEndpoint": "https://definitiveid.wsg127.com/definitiveid_services/rest/Public/Identity"
+            }
+        ],
+        "@context": "https://www.w3.org/ns/did/v1"
+    }
