@@ -103,10 +103,45 @@ The returned DID Document complies with DID Core:
 - **Contact** : david.garciab@vargroupiberia.com
 ---
 **Note**: **Not all entities have a DID** but all DIDs are strictly correlated with an existing national identifier.
-## 9. Privacy & Security Considerations
-- No personal data beyond organizational identifiers and cryptographic keys is exposed.
-- End-to-end TLS for API access.
-- Rate limiting and anti-DoS protections.
+
+## 9. Privacy & Security Considerations  
+ 
+The `did:andorra` method is tightly coupled with the official **Andorra National Registry of Legal Entities (NRTAD)** and its associated PKI infrastructure, managed by the **Govern d’Andorra**. The following aspects apply:  
+ 
+- **Central Authority and PKI Management**  
+  - The Govern d’Andorra is the sole entity responsible for maintaining the NRTAD and its associated Public Key Infrastructure (PKI).  
+  - For each registered NRTAD entity, a digital certificate is issued and signed by the official PKI.  
+  - The public key contained in this certificate is deterministically resolvable via the DID.  
+ 
+- **Use of Certificates**  
+  - The certificate issued per NRTAD ID is the basis for cryptographic trust.  
+  - It is stored in the Govern’s infrastructure and used to:  
+    - Sign verifiable credentials issued on behalf of the legal entity.  
+    - Sign verifiable presentation requests sent to the wallets by the entities acting as service providers.
+  - Certificate renewal, rotation, and revocation are handled exclusively by the Govern’s PKI.  
+ 
+- **Data Minimization**  
+  - DID Documents contain only organizational identifiers (NRTAD numbers) and public cryptographic material.  
+  - No personal data, sensitive information, or private keys are exposed or resolvable via the DID.  
+ 
+- **Confidentiality and Transport Security**  
+  - All registry and resolution APIs enforce end-to-end encryption (TLS).  
+  - Requests and responses are rate-limited, audited, and protected against denial-of-service (DoS) and enumeration attacks.  
+ 
+- **Key Lifecycle and Revocation**  
+  - Public keys are bound to NRTAD-issued certificates, which follow standard PKI lifecycles (issuance, rotation, expiry, revocation).  
+  - Revoked or expired certificates are immediately reflected in the DID resolution process, preventing misuse of compromised keys.  
+ 
+- **Trust Assumptions**  
+  - Trust in the `did:andorra` method depends on the integrity of the Govern’s PKI.  
+  - Compromise of the central authority or its signing keys would undermine all dependent DID Documents.  
+  - Entities consuming `did:andorra` DIDs must validate certificate chains against the official Andorra PKI root of trust.  
+ 
+- **Privacy Considerations**  
+  - Since DIDs map to NRTAD organizational identifiers, resolution confirms the existence of a registered legal entity.  
+  - No personal data or operational/transactional information is exposed through DID resolution.  
+  - DID Documents only disclose the minimum necessary data (identifier, public keys, and optional service endpoints), all derived from authoritative registry information.
+
 ## 10. Lifecycle 
 - Versioning: Semantic Versioning for this spec. Breaking changes require new version and prior notice.  
 - Deprecation/Deactivation: If a DID becomes invalid, the backend returns notFound.  
